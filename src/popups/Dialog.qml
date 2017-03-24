@@ -45,6 +45,9 @@ PopupBase {
     property alias title: titleLabel.text
     property alias text: textLabel.text
 
+    property alias positiveButtonSize: positiveButton.size
+    property alias negativeButtonSize: negativeButton.size
+
     /*!
        \qmlproperty Button negativeButton
        The negative button, displayed as the leftmost button on the right of the dialog buttons.
@@ -292,8 +295,8 @@ PopupBase {
                     }
 
                     onClicked: {
-                        close();
                         rejected();
+                        close();
                     }
                 }
 
@@ -312,8 +315,8 @@ PopupBase {
                     }
 
                     onClicked: {
-                        close()
                         accepted();
+                        close();
                     }
                 }
             }
