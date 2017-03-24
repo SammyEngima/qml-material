@@ -38,6 +38,7 @@ TextFieldStyle {
     background : Item {
         id: background
 
+        property bool placeholderHorizontalCenter: control.hasOwnProperty("placeholderHorizontalCenter") ? control.placeholderHorizontalCenter : false
         property color color: control.hasOwnProperty("color") ? control.color : Theme.accentColor
         property color errorColor: control.hasOwnProperty("errorColor")
                 ? control.errorColor : Palette.colors["red"]["500"]
@@ -52,7 +53,7 @@ TextFieldStyle {
             id: underline
             color: background.hasError ? background.errorColor
                                     : control.activeFocus ? background.color
-                                                          : Theme.light.hintColor
+                                                          : control.borderColor
 
             height: control.activeFocus ? 2 * Units.dp : 1 * Units.dp
             visible: background.showBorder
@@ -77,12 +78,13 @@ TextFieldStyle {
             id: fieldPlaceholder
 
             anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: placeholderHorizontalCenter === false ? undefined : parent.horizontalCenter
             text: control.placeholderText
-            font.pixelSize: 16 * Units.dp
+            font.pixelSize: placeholderPixelSize
             anchors.margins: -12 * Units.dp
             color: background.hasError ? background.errorColor
                                   : control.activeFocus && control.text !== ""
-                                        ? background.color : Theme.light.hintColor
+                                        ? background.color : control.placeholderTextColor
 
             states: [
                 State {

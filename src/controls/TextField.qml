@@ -25,11 +25,15 @@ Controls.TextField {
 
     property color color: Theme.accentColor
     property color errorColor: Palette.colors["red"]["500"]
+    property color placeholderTextColor: Theme.light.hintColor
+    property color borderColor: Theme.light.hintColor
     property string helperText
     property bool floatingLabel: false
     property bool hasError: characterLimit && length > characterLimit
     property int characterLimit
     property bool showBorder: true
+    property int placeholderPixelSize: 16 * Units.dp
+    property bool placeholderHorizontalCenter: false
 
     style: MaterialStyle.TextFieldStyle {}
 }
