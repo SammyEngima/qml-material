@@ -29,11 +29,16 @@ View {
     property bool darkBackground
     property int margins: 16 * Units.dp
 
+    property alias ink: ink
+
     property bool selected
     property bool interactive: true
 
     property int dividerInset: 0
     property bool showDivider: false
+
+    signal entered()
+    signal exited()
 
     signal clicked()
     signal pressAndHold()
@@ -53,6 +58,9 @@ View {
 
         onClicked: listItem.clicked()
         onPressAndHold: listItem.pressAndHold()
+
+        onEntered: listItem.entered()
+        onExited: listItem.exited()
 
         anchors.fill: parent
 
