@@ -24,9 +24,9 @@ Subtitled {
     property var model
     property alias selectedIndex: listView.currentIndex
 
-    subText: listView.currentItem.text
+    text: listView.currentItem.text
 
-    onClicked: menu.open(listItem, 16 * Units.dp, 0)
+    onClicked: menu.open(listItem, 0, 0)
 
     property int __maxWidth: 0
 
