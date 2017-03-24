@@ -26,6 +26,9 @@ PopupBase {
     property int anchor: Item.TopRight
     property alias internalView: view
 
+    property int durationFast: 200
+    property int durationSlow: 400
+
     visible: view.opacity > 0
     closeOnResize: true
 
@@ -138,20 +141,20 @@ PopupBase {
             NumberAnimation {
                 target: internalView
                 property: "opacity"
-                duration: 400
+                duration: durationSlow
                 easing.type: Easing.InOutQuad
             }
 
             SequentialAnimation {
 
                 PauseAnimation {
-                    duration: 200
+                    duration: durationFast
                 }
 
                 NumberAnimation {
                     target: internalView
                     property: "width"
-                    duration: 200
+                    duration: durationFast
                     easing.type: Easing.InOutQuad
                 }
             }
@@ -159,7 +162,7 @@ PopupBase {
             NumberAnimation {
                 target: internalView
                 property: "height"
-                duration: 400
+                duration: durationSlow
                 easing.type: Easing.InOutQuad
             }
         },
@@ -171,21 +174,21 @@ PopupBase {
             NumberAnimation {
                 target: internalView
                 property: "opacity"
-                duration: 400
+                duration: durationSlow
                 easing.type: Easing.InOutQuad
             }
 
             NumberAnimation {
                 target: internalView
                 property: "width"
-                duration: 200
+                duration: durationFast
                 easing.type: Easing.InOutQuad
             }
 
             NumberAnimation {
                 target: internalView
                 property: "height"
-                duration: 400
+                duration: durationSlow
                 easing.type: Easing.InOutQuad
             }
         }
