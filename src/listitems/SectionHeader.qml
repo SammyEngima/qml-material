@@ -82,8 +82,8 @@ BaseListItem {
                     left: parent.left
                 }
 
-                name: "navigation/expand_more"
-                rotation: listItem.expanded ? 180 : 0
+                name: "awesome/chevron_down"
+                rotation: listItem.expanded ? 0 : 90
                 size: 24 * Units.dp
                 color: darkBackground ? Theme.dark.iconColor : Theme.light.iconColor
 
