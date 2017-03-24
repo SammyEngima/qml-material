@@ -22,6 +22,7 @@ class UnitsAttached : public QObject
     Q_OBJECT
 
     Q_PROPERTY(int dp READ dp NOTIFY dpChanged)
+    Q_PROPERTY(int dpi READ dpi NOTIFY dpChanged)
     Q_PROPERTY(qreal multiplier READ multiplier WRITE setMultiplier NOTIFY multiplierChanged)
 
 public:
