@@ -32,6 +32,9 @@ PopupBase {
 
     property alias transitionOpacity: shadow.opacity
 
+    property bool transitionShowing: false
+    property int radiusOnStart: 0
+
     states: [
         State {
             name: "hidden"
@@ -63,16 +66,22 @@ PopupBase {
 
         parent = Utils.findRootChild(overlay, overlayLayer)
         showing = true
+        transitionShowing = true
         forceActiveFocus()
         parent.currentOverlay = overlay
+        shadow.radius = 0
 
         opened()
     }
 
     function close() {
         showing = false
+        transitionShowing = false
         parent.currentOverlay = null
         sourceView = null
+        shadow.radius = radiusOnStart
+
+        closed()
     }
 
     View {
@@ -81,6 +90,13 @@ PopupBase {
         anchors.fill: parent
         opacity: showing ? 1 : 0
         elevation: 5
+        radius: radiusOnStart
+
+        Behavior on radius {
+            NumberAnimation {
+                duration: 300; easing.type: Easing.InOutQuad
+            }
+        }
 
         Behavior on opacity {
             NumberAnimation {
