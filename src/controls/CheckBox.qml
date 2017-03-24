@@ -33,9 +33,14 @@ Controls.CheckBox {
      */
     property bool darkBackground
 
+    property alias inkWidth: ink.width
+    property alias inkHeight: ink.height
+
+
     style: MaterialStyle.CheckBoxStyle {}
 
     Ink {
+        id: ink
         anchors {
             verticalCenter: parent.verticalCenter
             left: parent.left
