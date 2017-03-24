@@ -39,6 +39,7 @@ BaseListItem {
 
     property alias textColor: label.color
     property alias iconColor: icon.color
+    property alias spacing: row.spacing
 
     dividerInset: actionItem.visible ? listItem.height : 0
 
