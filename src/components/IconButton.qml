@@ -28,6 +28,11 @@ Item {
     property alias color: icon.color
     property alias size: icon.size
 
+    property alias inkWidth: ink.width
+    property alias inkHeight: ink.height
+
+    signal entered
+    signal exited
     signal clicked
 
     width: icon.width
@@ -51,6 +56,13 @@ Item {
         height: parent.height + 20 * Units.dp
 
         z: 0
+
+        onEntered: {
+            iconButton.entered()
+        }
+        onExited: {
+            iconButton.exited()
+        }
 
         onClicked: {
             iconButton.clicked()
