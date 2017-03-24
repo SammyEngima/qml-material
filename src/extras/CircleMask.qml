@@ -15,6 +15,7 @@ Item {
     id: item
 
     property alias source: mask.source
+    property alias radius: circleMask.radius
 
     Rectangle {
         id: circleMask

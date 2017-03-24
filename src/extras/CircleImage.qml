@@ -22,6 +22,7 @@ Item {
     property alias asynchronous: image.asynchronous
     property alias cache: image.cache
     property alias fillMode: image.fillMode
+    property alias radius: circleMask.radius
 
     width: image.implicitWidth
     height: image.implicitHeight
@@ -35,6 +36,7 @@ Item {
     }
 
     CircleMask {
+        id: circleMask
         anchors.fill: image
         source: image
     }
