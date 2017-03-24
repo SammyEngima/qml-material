@@ -48,6 +48,7 @@ import Material 0.3
 Controls.Button {
     id: button
 
+    property int size
     /*!
        The background color of the button. By default, this is white for a raised
        button and transparent for a flat button.
@@ -76,6 +77,11 @@ Controls.Button {
        The elevation of the button. Normally either \c 0 or \c 1.
      */
     property int elevation
+
+    /*!
+       The radius of the button. Normally setted as 2.
+     */
+    property int radius
 
     /*!
        The text color of the button. By default, this is calculated based on the background color,

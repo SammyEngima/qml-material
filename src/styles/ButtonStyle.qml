@@ -32,12 +32,14 @@ ButtonStyle {
 
     property string context: control.hasOwnProperty("context") ? control.context : "default"
 
+    property int controlRadius: control.hasOwnProperty("radius") ? control.radius : (2 * Units.dp)
+
     background: View {
         id: background
 
         implicitHeight: 36 * Units.dp
 
-        radius: 2 * Units.dp
+        radius: controlRadius
 
         backgroundColor: control.enabled || controlElevation === 0
                 ? controlBackground
@@ -91,6 +93,7 @@ ButtonStyle {
             anchors.centerIn: parent
             text: control.text
             style: "button"
+            font.pixelSize: control.size
             color: control.enabled ? control.hasOwnProperty("textColor")
                                      ? control.textColor : darkBackground ? Theme.dark.textColor
                                                                           : Theme.light.textColor
