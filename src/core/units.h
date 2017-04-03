@@ -17,18 +17,20 @@
 #include <QQuickWindow>
 #include <QPointer>
 
-class UnitsAttached : public QObject
+class Units : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(int dp READ dp NOTIFY dpChanged)
+    Q_PROPERTY(qreal dp READ dp NOTIFY dpChanged)
     Q_PROPERTY(int dpi READ dpi NOTIFY dpChanged)
     Q_PROPERTY(qreal multiplier READ multiplier WRITE setMultiplier NOTIFY multiplierChanged)
 
 public:
-    UnitsAttached(QObject *attachee);
+    Units(QObject *attachee = 0);
 
-    int dp() const;
+    static QObject *qmlSingleton(QQmlEngine *engine, QJSEngine *scriptEngine);
+
+    qreal dp() const;
     int dpi() const;
     qreal multiplier() const;
 
@@ -52,17 +54,6 @@ private:
 
     int m_dpi;
     qreal m_multiplier;
-};
-
-class Units : public QObject
-{
-    Q_OBJECT
-
-public:
-    static UnitsAttached *qmlAttachedProperties(QObject *object)
-    {
-        return new UnitsAttached(object);
-    }
 };
 
 QML_DECLARE_TYPEINFO(Units, QML_HAS_ATTACHED_PROPERTIES)

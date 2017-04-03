@@ -19,7 +19,7 @@
 
 #define DEFAULT_DPI 72
 
-UnitsAttached::UnitsAttached(QObject *attachee)
+Units::Units(QObject *attachee)
         : QObject(attachee), m_screen(nullptr), m_window(nullptr), m_dpi(0), m_multiplier(1)
 {
     m_attachee = qobject_cast<QQuickItem *>(attachee);
@@ -37,19 +37,27 @@ UnitsAttached::UnitsAttached(QObject *attachee)
         screenChanged(QGuiApplication::primaryScreen());
 }
 
-void UnitsAttached::windowChanged(QQuickWindow *window)
+QObject *Units::qmlSingleton(QQmlEngine *engine, QJSEngine *scriptEngine)
+{
+    Q_UNUSED(engine)
+    Q_UNUSED(scriptEngine)
+
+    return new Units();
+}
+
+void Units::windowChanged(QQuickWindow *window)
 {
     if (m_window)
-        disconnect(m_window, &QQuickWindow::screenChanged, this, &UnitsAttached::screenChanged);
+        disconnect(m_window, &QQuickWindow::screenChanged, this, &Units::screenChanged);
 
     m_window = window;
     screenChanged(window ? window->screen() : nullptr);
 
     if (window)
-        connect(window, &QQuickWindow::screenChanged, this, &UnitsAttached::screenChanged);
+        connect(window, &QQuickWindow::screenChanged, this, &Units::screenChanged);
 }
 
-void UnitsAttached::screenChanged(QScreen *screen)
+void Units::screenChanged(QScreen *screen)
 {
     if (screen != m_screen) {
         QScreen *oldScreen = m_screen;
@@ -68,30 +76,31 @@ void UnitsAttached::screenChanged(QScreen *screen)
     }
 }
 
-int UnitsAttached::dp() const
+qreal Units::dp() const
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
-    return m_multiplier;
-#else
+//#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
+//    return m_multiplier;
+//#else
     auto dp = dpi() / 160;
 
     return dp > 0 ? dp * m_multiplier : m_multiplier;
-#endif
+//#endif
 }
 
-int UnitsAttached::dpi() const { return m_dpi; }
+int Units::dpi() const { return m_dpi; }
 
-qreal UnitsAttached::multiplier() const { return m_multiplier; }
+qreal Units::multiplier() const { return m_multiplier; }
 
-void UnitsAttached::setMultiplier(qreal multiplier)
+void Units::setMultiplier(qreal multiplier)
 {
     if (m_multiplier != multiplier) {
         m_multiplier = multiplier;
         emit multiplierChanged();
+        emit dpChanged();
     }
 }
 
-void UnitsAttached::updateDPI()
+void Units::updateDPI()
 {
     if (m_screen == nullptr) {
         m_dpi = DEFAULT_DPI;

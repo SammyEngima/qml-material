@@ -20,7 +20,7 @@ class MaterialRegisterHelper {
 public:
     MaterialRegisterHelper(const char *uri) {
         qmlRegisterSingletonType<Device>(uri, 0, 1, "Device", Device::qmlSingleton);
-        qmlRegisterUncreatableType<Units>(uri, 0, 3, "Units", QStringLiteral("Units can only be used via the attached property."));
+        qmlRegisterSingletonType<Units>(uri, 0, 3, "Units", Units::qmlSingleton);
     }
 };
 
