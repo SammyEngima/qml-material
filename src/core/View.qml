@@ -124,6 +124,36 @@ Item {
         property real horizontalShadowOffset: elevationInfo.offset * Math.sin((2 * Math.PI) * (parent.rotation / 360.0))
         property real verticalShadowOffset: elevationInfo.offset * Math.cos((2 * Math.PI) * (parent.rotation / 360.0))
 
+		Behavior on elevationInfo {
+			NumberAnimation {
+				duration: MaterialAnimation.pageTransitionDuration
+			}
+		}
+
+		Behavior on horizontalShadowOffset {
+			NumberAnimation {
+				duration: MaterialAnimation.pageTransitionDuration
+			}
+		}
+
+		Behavior on verticalShadowOffset {
+			NumberAnimation {
+				duration: MaterialAnimation.pageTransitionDuration
+			}
+		}
+
+		Behavior on opacity {
+			NumberAnimation {
+				duration: MaterialAnimation.pageTransitionDuration
+			}
+		}
+
+		Behavior on glowRadius {
+			NumberAnimation {
+				duration: MaterialAnimation.pageTransitionDuration
+			}
+		}
+
         anchors.centerIn: parent
         width: parent.width + (fullWidth ? 10 * Units.dp : 0)
         height: parent.height + (fullHeight ? 20 * Units.dp : 0)
@@ -141,6 +171,36 @@ Item {
         property var elevationInfo: topShadow[Math.min(elevation, 5)]
         property real horizontalShadowOffset: elevationInfo.offset * Math.sin((2 * Math.PI) * (parent.rotation / 360.0))
         property real verticalShadowOffset: elevationInfo.offset * Math.cos((2 * Math.PI) * (parent.rotation / 360.0))
+
+		Behavior on elevationInfo {
+			NumberAnimation {
+				duration: MaterialAnimation.pageTransitionDuration
+			}
+		}
+
+		Behavior on horizontalShadowOffset {
+			NumberAnimation {
+				duration: MaterialAnimation.pageTransitionDuration
+			}
+		}
+
+		Behavior on verticalShadowOffset {
+			NumberAnimation {
+				duration: MaterialAnimation.pageTransitionDuration
+			}
+		}
+
+		Behavior on opacity {
+			NumberAnimation {
+				duration: MaterialAnimation.pageTransitionDuration
+			}
+		}
+
+		Behavior on glowRadius {
+			NumberAnimation {
+				duration: MaterialAnimation.pageTransitionDuration
+			}
+		}
 
         anchors.centerIn: parent
         width: parent.width + (fullWidth ? 10 * Units.dp : 0)
