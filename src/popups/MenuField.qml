@@ -88,7 +88,7 @@ Item {
             id: spinBoxContents
 
             height: parent.height
-            width: parent.width + 5 * Units.dp
+			width: parent.width //+ 5 * Units.dp
 
             Label {
                 id: label
@@ -105,11 +105,11 @@ Item {
                 id: dropDownIcon
 
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-                Layout.preferredWidth: 24 * Units.dp
-                Layout.preferredHeight: 24 * Units.dp
+				Layout.preferredWidth: 24 * Units.dp
+				Layout.preferredHeight: 24 * Units.dp
 
-                name: "navigation/arrow_drop_down"
-                size: 24 * Units.dp
+				name: "awesome/chevron_down"
+				size: 20 * Units.dp
             }
         }
 
@@ -123,6 +123,9 @@ Item {
             //If there are more than max items, show an extra half item so
             // it's clear the user can scroll
             height: Math.min(maxVisibleItems*48 * Units.dp + 24 * Units.dp, listView.contentHeight)
+
+			durationSlow: 300
+			durationFast: 150
 
             ListView {
                 id: listView
